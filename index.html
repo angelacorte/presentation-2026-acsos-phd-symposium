@@ -1,14 +1,14 @@
 <!DOCTYPE html><html lang="en"><head>
 	<meta name="generator" content="Hugo 0.165.0">
     <meta charset="utf-8">
-<title>Guide for writing markdown slides</title>
-<meta name="description" content="A Hugo theme for creating Reveal.js presentations">
+<title>Toward a Collective Robotic Operating System</title>
+<meta name="description" content="ACSOS 2026 PhD Symposium presentation">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/presetation-2026-acsos-phd-symposium/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/presetation-2026-acsos-phd-symposium/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/presetation-2026-acsos-phd-symposium/css/custom-theme.min.27c850f45a44c4595b156fdb0de45e8a831d721bfa01d5ca78cd6ce207106973.css" id="theme"><link rel="stylesheet" href="/presetation-2026-acsos-phd-symposium/highlight-js/solarized-dark.min.css">
+  <link rel="stylesheet" href="/presetation-2026-acsos-phd-symposium/css/custom-theme.min.44fdcb6544d3de0a0dd4d0ec881941ccc260bdd0cad87a980ef41eb1fd2acb97.css" id="theme"><link rel="stylesheet" href="/presetation-2026-acsos-phd-symposium/highlight-js/solarized-dark.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
@@ -25,44 +25,258 @@
       <div class="slides">
   
 
-    <section><h1 id="title">Title</h1>
-<p><a href="mailto:angela.cortecchia@unibo.it"><strong>Angela Cortecchia</strong></a></p>
-<div style="text-align: center; width: 100%;">
-<img src="example-background.svg" style="width: 40%">
+    
+<section data-noprocess="" data-shortcode-slide="" class="title-slide" data-transition="fade">
+  
+<div class="title-layout">
+<div class="title-copy">
+<p class="eyebrow">ACSOS 2026 · PhD Symposium</p>
+<h1 id="toward-a-collective-robotic-operating-system">Toward a Collective Robotic Operating System</h1>
+<p class="subtitle">Aggregate Computing for adaptive robot swarms</p>
+<p class="author"><strong>Angela Cortecchia</strong><br>University of Bologna · DISI</p>
 </div>
+<div class="title-visual">
+<img src="images/drones_avoiding_formation.png" alt="A robot swarm reorganizing around obstacles">
+</div>
+</div>
+
+
+
+<aside class="notes"><p>Timing: 30 seconds. Introduce the research goal: make a swarm programmable and manageable as one adaptive system.</p>
+</aside>
 </section>
 
-<section data-noprocess="" data-shortcode-slide="" data-background-image="https://angelacorte.github.io/presetation-2026-acsos-phd-symposium/images/smartstation.png" data-background-opacity="0.55">
+<section data-noprocess="" data-shortcode-slide="" class="challenge-slide" data-transition="fade">
   
-<div class="" style="background-color: #ffffffc0; border-radius: 20px; padding: 20px; margin: auto; 
-     ZgotmplZ">
-    <h1 id="base1">Base<small>1</small></h1>
+<p class="eyebrow">The engineering problem</p>
+<h1 id="a-swarm-keeps-changing-while-it-operates">A swarm keeps changing while it operates</h1>
+
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><h3 id="first-col">first col</h3>
+    <div class="row split wide-gap"><div class="col copy-col"><p>A robotic collective must pursue a <strong>system-level goal</strong> while each robot has only a local view.</p>
+<div class="challenge-list">
+<p><span class="fragment ">Robots move, fail, join, and leave</span></p>
+<p><span class="fragment ">Connectivity and sensing change at runtime</span></p>
+<p><span class="fragment ">Unsafe transients can cause physical damage</span></p>
+</div>
+<p class="takeaway">The collective needs runtime support, not only a coordination algorithm.</p>
+</div>
+<div class="col visual-col"><img class="hero-image" src="images/drones_changing-formation.png" alt="Drones changing formation around obstacles">
+</div>
+</div>
+</div>
+
+
+
+<aside class="notes"><p>Timing: 50 seconds. Emphasize that mobility and failures change the computational structure during execution. The operating layer must react while the robots remain physically safe.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="aggregate-slide" data-transition="fade">
+  
+<p class="eyebrow">Programming abstraction</p>
+<h1 id="aggregate-computing-programs-the-collective">Aggregate Computing programs the collective</h1>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row split"><div class="col copy-col"><p>Each device repeatedly:</p>
+<ol>
+<li>senses local information;</li>
+<li>exchanges data with its neighbors;</li>
+<li>runs the same aggregate program;</li>
+<li>acts on its local result.</li>
+</ol>
+<p class="takeaway">Local executions compose into a global behavior.</p>
+</div>
+<div class="col visual-col collective-visual"><img src="images/collective.svg" alt="Local device interactions producing collective behavior">
+<p class="image-caption">One program, distributed execution, collective outcome</p>
+</div>
+</div>
+</div>
+
+
+
+<aside class="notes"><p>Timing: 55 seconds. Explain computational fields as values distributed across devices. Aggregate Computing raises the abstraction level without introducing a central controller.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="gap-slide" data-transition="fade">
+  
+<p class="eyebrow">Research gap</p>
+<h1 id="a-programming-model-does-not-yet-provide-an-operating-layer">A programming model does not yet provide an operating layer</h1>
+<div class="comparison">
+<div class="comparison-side">
+<h3>Traditional operating system</h3>
+<p>Runs processes on one machine</p>
 <ul>
-    <li class="fragment" data-fragment-index="0">who</li>
-    <li class="fragment" data-fragment-index="1">are</li>
-    <li class="fragment" data-fragment-index="2">them</li>
+<li>Lifecycle and preemption</li>
+<li>Interprocess communication</li>
+<li>Resource access</li>
 </ul>
 </div>
-<div class="col "><h3 id="second-col">second col</h3>
+<div class="comparison-divider" aria-hidden="true"></div>
+<div class="comparison-side collective-side">
+<h3>Collective counterpart</h3>
+<p>Runs aggregate processes across space</p>
 <ul>
-    <li class="fragment" data-fragment-index="0">pippo</li>
-    <li class="fragment" data-fragment-index="1">pluto</li>
-    <li class="fragment" data-fragment-index="2">paperino</li>
+<li>Distributed lifecycle management</li>
+<li>Communication across regions</li>
+<li>Collective sensing and actuation</li>
 </ul>
 </div>
 </div>
+<p class="takeaway centered">The runtime must manage computations whose membership and physical footprint change over time.</p>
+
+
+
+<aside class="notes"><p>Timing: 55 seconds. Use the OS analogy as a design lens, not as a claim that every traditional OS mechanism transfers directly.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="vision-slide" data-transition="fade">
+  
+<p class="eyebrow">PhD research vision</p>
+<h1 id="collective-processes-as-the-unit-of-management">Collective processes as the unit of management</h1>
+<div class="vision-statement">
+<span class="vision-label">CROS</span>
+<p>A <strong>Collective Robotic Operating System</strong> built on Aggregate Computing</p>
 </div>
+<div class="capability-line">
+<span>Concurrent applications</span>
+<span>Runtime adaptation</span>
+<span>Transient safety</span>
+<span>Collective sensing</span>
+<span>Resilient state</span>
+</div>
+<p class="research-question">How can reusable runtime mechanisms keep collective behavior manageable while robots, goals, and networks change?</p>
+
+
+
+<aside class="notes"><p>Timing: 50 seconds. Present CROS as the long-term research vision. The capabilities form the evaluation dimensions for the incremental work.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="portfolio-slide" data-transition="fade">
+  
+<p class="eyebrow">Progress so far</p>
+<h1 id="four-building-blocks-for-the-operating-layer">Four building blocks for the operating layer</h1>
+<div class="contribution-grid">
+<figure>
+<img src="images/oneroot.gif" alt="FieldVMC structures emerging from local interactions">
+<figcaption><strong>Spatial organization</strong><span>FieldVMC</span></figcaption>
+</figure>
+<figure>
+<img src="images/replanning.gif" alt="Robot teams replanning after a mission change">
+<figcaption><strong>Runtime replanning</strong><span>Field-based missions</span></figcaption>
+</figure>
+<figure>
+<img src="images/gossip.gif" alt="A distributed network exchanging gossip state">
+<figcaption><strong>Resilient state</strong><span>Self-stabilizing gossip</span></figcaption>
+</figure>
+<figure>
+<img src="images/dpf.gif" alt="Distributed particle filtering over a sensor network">
+<figcaption><strong>Collective sensing</strong><span>Field-based DPF</span></figcaption>
+</figure>
+</div>
+<p class="takeaway centered">Each problem contributes a mechanism that can become part of a shared runtime.</p>
+
+
+
+<aside class="notes"><p>Timing: 65 seconds. Give one sentence per contribution. FieldVMC supports asynchronous organization. Replanning redistributes tasks. Gossip retracts obsolete state after faults. Field-based DPF separates estimation from coordination choices.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="transient-slide" data-transition="fade">
+  
+<p class="eyebrow">Open problem</p>
+<h1 id="eventual-recovery-leaves-a-safety-gap">Eventual recovery leaves a safety gap</h1>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row split wide-gap"><div class="col copy-col"><p>Self-stabilizing programs guarantee recovery <strong>after perturbations stop</strong>.</p>
+<p>During convergence, a robot may still:</p>
+<ul>
+<li>collide with another robot;</li>
+<li>hit an obstacle;</li>
+<li>break a required communication link.</li>
+</ul>
+<p class="takeaway warning">Physical constraints must hold during adaptation.</p>
+</div>
+<div class="col visual-col"><img class="hero-image" src="images/drones_eventual_consistency.png" alt="A swarm temporarily changing its formation near obstacles">
+<p class="image-caption">The collective may still be reorganizing when a command reaches an actuator</p>
+</div>
+</div>
+</div>
+
+
+
+<aside class="notes"><p>Timing: 60 seconds. Contrast eventual convergence with invariants that must hold at every instant. This motivates the paper’s safety-filter architecture.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="architecture-slide" data-transition="fade">
+  
+<p class="eyebrow">Latest contribution</p>
+<h1 id="toward-safe-aggregate-computing">Toward Safe Aggregate Computing</h1>
+<div class="architecture-wrap">
+<img src="images/architecture.pdf" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
+</div>
+<div class="layer-explainer">
+<p><strong>Aggregate program</strong><br>Computes the nominal swarm command <em>u<sub>nom</sub></em></p>
+<p><strong>CLF/CBF safety filter</strong><br>Refines it into a feasible command <em>u</em> before actuation</p>
+</div>
+<p class="takeaway centered">Collective strategy and physical safety remain separate concerns.</p>
+
+
+
+<aside class="notes"><p>Timing: 80 seconds. Explain that CLFs encode convergence objectives and CBFs encode safety constraints. The local and pairwise quadratic programs run in a distributed fashion. The filter minimally modifies the nominal command when the active constraints are feasible.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="results-slide" data-transition="fade">
+  
+<p class="eyebrow">Proof of concept</p>
+<h1 id="the-filter-preserves-active-constraints-in-simulation">The filter preserves active constraints in simulation</h1>
+<div class="result-grid">
+<figure>
+<img src="images/different-targets.gif" alt="Two robot groups reaching different targets while avoiding obstacles">
+<figcaption><strong>Different targets</strong><span>Collision and obstacle avoidance</span></figcaption>
+</figure>
+<figure>
+<img src="images/follow-leader.gif" alt="Robot clusters merging and following a common leader">
+<figcaption><strong>Dynamic leader election</strong><span>Connectivity preservation</span></figcaption>
+</figure>
+</div>
+<p class="scope-note"><strong>Current scope:</strong> proof-of-concept simulations. Quantitative scalability and overhead evaluation remain future work.</p>
+
+
+
+<aside class="notes"><p>Timing: 70 seconds. Describe the two demonstrated scenarios. State the scope clearly: the paper shows feasibility in simulation and does not yet provide a quantitative performance evaluation.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="closing-slide" data-transition="fade">
+  
+<p class="eyebrow">Next research step</p>
+<h1 id="a-shared-runtime-for-managed-collective-adaptation">A shared runtime for managed collective adaptation</h1>
+<div class="closing-layout">
 <div>
-<small style="text-align: left">
-<br>
-[1] Beal, J., Pianini, D., Viroli, M. "Aggregate Programming for the Internet of Things." 2015.<br>
-</small>
+<p class="closing-lead">Integrate the building blocks into a runtime that can:</p>
+<ul class="closing-list">
+<li>run and preempt multiple aggregate processes;</li>
+<li>share state across dynamic regions;</li>
+<li>switch strategies while preserving safety.</li>
+</ul>
+<p class="future-note"><strong>Planned extension:</strong> adaptive navigation policies that escape local minima, then resume the original objective.</p>
 </div>
-
+<div class="closing-mark">
+<img src="images/qr.png" alt="QR code linking to the project materials">
+<p>Code and experiments</p>
 </div>
+</div>
+<p class="final-line">Make the swarm programmable as one system, while keeping its adaptation explicit and safe.</p>
 
+
+
+<aside class="notes"><p>Timing: 45 seconds. Close on the integration goal. Clarify that strategy switching around local minima is planned work, not a result of the current paper. Leave roughly 30 seconds of buffer within the 10-minute slot.</p>
+</aside>
 </section>
 
   
@@ -76,7 +290,7 @@
 
 <a href="/presetation-2026-acsos-phd-symposium/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
 
-<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"solarized-dark","history":true,"mermaid":[{}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-site-params">{"center":false,"controls":false,"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"hash":true,"height":"1080","highlight_theme":"solarized-dark","history":true,"mermaid":[{}],"progress":true,"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
 <script type="application/json" id="reveal-hugo-page-params">null</script>
 
 <script src="/presetation-2026-acsos-phd-symposium/reveal-js/dist/reveal.js"></script>
