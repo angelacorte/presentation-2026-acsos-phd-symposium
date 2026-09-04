@@ -1,4 +1,4 @@
-baseURL = "https://angelacorte.github.io/Personalized-Template-Hugo-Reveal-Slides"
+baseURL = "https://angelacorte.github.io/presetation-2026-acsos-phd-symposium"
 languageCode = "en-us"
 title = "A Hugo theme for creating Reveal.js presentations"
 disableKinds = ["sitemap", "RSS"]
