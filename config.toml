@@ -1,5 +1,5 @@
 baseURL = "https://angelacorte.github.io/presetation-2026-acsos-phd-symposium"
-languageCode = "en-us"
+locale = "en-US"
 title = "A Hugo theme for creating Reveal.js presentations"
 disableKinds = ["sitemap", "RSS"]
 theme = "reveal-hugo"
@@ -30,9 +30,13 @@ isHTML = true
 
 [params.reveal_hugo]
 history = true
+hash = true
 theme = "league"
 highlight_theme = "solarized-dark"
 slide_number = true
+progress = true
+controls = false
+center = false
 transition = "slide"
 transition_speed = "fast"
 custom_theme = "custom-theme.scss"
@@ -67,5 +71,4 @@ enableSourceMap = true
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
-
 
