@@ -296,7 +296,7 @@ $heading4Size: 0.76em;
 	display: grid;
 	gap: 42px;
 	grid-template-columns: auto 1fr;
-	margin: 70px auto 54px;
+	margin: 24px auto 34px;
 	max-width: 1410px;
 }
 
@@ -332,11 +332,11 @@ $heading4Size: 0.76em;
 
 .reveal .research-question {
 	color: var(--navy);
-	font-size: 0.82em;
+	font-size: 0.7em;
 	font-weight: 650;
 	line-height: 1.28;
-	margin: 54px auto 0;
-	max-width: 1300px;
+	margin: 34px auto 0;
+	max-width: 1360px;
 	text-align: center;
 }
 
@@ -455,10 +455,38 @@ $heading4Size: 0.76em;
 .reveal .closing-layout {
 	align-items: center;
 	display: grid;
-	gap: 90px;
-	grid-template-columns: 1fr 320px;
-	margin: 30px auto 0;
-	max-width: 1390px;
+	gap: 60px;
+	grid-template-columns: 1fr 270px;
+	margin: 18px auto 0;
+	max-width: 1620px;
+}
+
+.reveal .wrap-up {
+	display: grid;
+	gap: 54px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .wrap-label {
+	color: var(--navy);
+	font-family: inherit;
+	font-size: 0.5em;
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	margin: 0 0 14px;
+	text-transform: uppercase;
+}
+
+.reveal .next-col .wrap-label {
+	color: var(--orange);
+}
+
+.reveal .wrap-col ul {
+	margin: 0;
+}
+
+.reveal .wrap-col li {
+	margin-bottom: 12px;
 }
 
 .reveal .closing-lead {
@@ -467,7 +495,8 @@ $heading4Size: 0.76em;
 }
 
 .reveal .closing-list li {
-	font-size: 0.72em;
+	font-size: 0.5em;
+	line-height: 1.3;
 }
 
 .reveal .future-note {
@@ -485,8 +514,8 @@ $heading4Size: 0.76em;
 
 .reveal .closing-mark img {
 	background: var(--paper);
-	padding: 15px;
-	width: 245px;
+	padding: 14px;
+	width: 225px;
 }
 
 .reveal .closing-mark p {
@@ -527,4 +556,154 @@ $heading4Size: 0.76em;
 	.reveal .contribution-grid {
 		gap: 18px;
 	}
+}
+
+// ---------------------------------------------------------------------------
+// PhD symposium 2026 — additions
+// ---------------------------------------------------------------------------
+
+// Title slide: contact and department mark.
+.reveal .title-copy .author {
+	margin-top: 64px;
+}
+
+.reveal .title-mail {
+	font-size: 0.58em;
+	margin: 14px 0 0;
+}
+
+.reveal .title-mail a {
+	color: var(--blue);
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.reveal .title-logo {
+	display: block;
+	margin-top: 46px;
+	width: 430px;
+}
+
+// Portfolio slide: five building blocks.
+.reveal .contribution-grid.five {
+	gap: 20px;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	max-width: 1620px;
+}
+
+.reveal .contribution-grid.five img {
+	height: 290px;
+}
+
+.reveal .contribution-grid.five figcaption strong {
+	font-size: 0.55em;
+}
+
+.reveal .contribution-grid.five figcaption span {
+	font-size: 0.42em;
+}
+
+.reveal .contribution-grid.five figcaption .cover {
+	color: var(--ink);
+	font-size: 0.4em;
+	line-height: 1.26;
+	margin-top: 12px;
+}
+
+// Safety filter: architecture and one scenario on a single slide.
+.reveal .filter-layout {
+	align-items: start;
+	display: grid;
+	gap: 56px;
+	grid-template-columns: 1.1fr 0.9fr;
+	margin: 12px auto 0;
+	max-width: 1620px;
+}
+
+.reveal .filter-diagram img {
+	width: 100%;
+}
+
+.reveal .filter-slide .layer-explainer {
+	display: grid;
+	gap: 30px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-top: 30px;
+}
+
+.reveal .filter-demo {
+	margin: 0;
+}
+
+.reveal .filter-demo img {
+	background: var(--paper);
+	height: 430px;
+	object-fit: contain;
+	width: 100%;
+}
+
+.reveal .filter-slide .scope-note {
+	margin-top: 30px;
+	max-width: 1620px;
+	text-align: left;
+}
+
+// "How it is done today" line, before the Aggregate Computing answer.
+.reveal .today {
+	background: var(--ice);
+	border-left: 6px solid var(--muted);
+	color: var(--muted);
+	font-size: 0.62em;
+	line-height: 1.28;
+	margin: 0 0 30px;
+	padding: 20px 24px;
+}
+
+.reveal .today strong {
+	color: var(--ink);
+}
+
+// Vision slide: operating-system services mapped onto the collective.
+.reveal .os-map {
+	margin: 0 auto;
+	max-width: 1520px;
+}
+
+.reveal .os-row {
+	align-items: baseline;
+	border-bottom: 1px solid var(--line);
+	display: grid;
+	gap: 36px;
+	grid-template-columns: 330px 1fr 170px;
+	padding: 13px 0;
+}
+
+.reveal .os-cap {
+	color: var(--navy);
+	font-size: 0.5em;
+	font-weight: 700;
+}
+
+.reveal .os-mean {
+	color: var(--ink);
+	font-size: 0.46em;
+	line-height: 1.25;
+}
+
+.reveal .os-state {
+	color: var(--cyan);
+	font-size: 0.36em;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.reveal .os-row.open .os-cap,
+.reveal .os-row.open .os-state {
+	color: var(--orange);
+}
+
+.reveal .os-row.open .os-mean {
+	color: var(--muted);
 }

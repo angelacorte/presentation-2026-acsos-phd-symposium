@@ -11,13 +11,18 @@ outputs = ["Reveal"]
 <div class="title-layout">
 <div class="title-copy">
 
-<p class="eyebrow">ACSOS 2026 · PhD Symposium</p>
+<p class="eyebrow">@ ACSOS 2026 · PhD Symposium</p>
 
-# Toward a Collective Robotic Operating System
+# Towards Collective Robotic Operating Systems
 
 <p class="subtitle">Aggregate Computing for adaptive robot swarms</p>
 
-<p class="author"><strong>Angela Cortecchia</strong><br>University of Bologna · DISI</p>
+<p class="author"><strong>Angela Cortecchia</strong><br>
+Supervisor: Prof. Danilo Pianini <br>Co-supervisor: Prof. Mirko Viroli</p>
+
+<p class="title-mail"><a href="mailto:angela.cortecchia@unibo.it">angela.cortecchia@unibo.it</a></p>
+
+<img class="title-logo" src="images/DIP INFORMATICA-SCIENZA E INGEGNERIA_DISI_EN.svg" alt="Department of Computer Science and Engineering, University of Bologna">
 
 </div>
 <div class="title-visual">
@@ -40,12 +45,13 @@ Timing: 30 seconds. Introduce the research goal: make a swarm programmable and m
 {{% multicol class="split wide-gap" %}}
 {{% col class="copy-col" %}}
 
-A robotic collective must pursue a **system-level goal** while each robot has only a local view.
+A robotic collective must pursue a **system-level goal** with only local views and
+**no centralized point of coordination**.
 
 <div class="challenge-list">
-<p>{{< frag c="Robots move, fail, join, and leave" >}}</p>
-<p>{{< frag c="Connectivity and sensing change at runtime" >}}</p>
-<p>{{< frag c="Unsafe transients can cause physical damage" >}}</p>
+<p>Robots are heterogeneous: they move, fail, join, and leave</p>
+<p>Connectivity and sensing change at runtime</p>
+<p>Unsafe transients can cause physical damage</p>
 </div>
 
 <p class="takeaway">The collective needs runtime support, not only a coordination algorithm.</p>
@@ -59,7 +65,7 @@ A robotic collective must pursue a **system-level goal** while each robot has on
 {{% /multicol %}}
 
 {{% note %}}
-Timing: 50 seconds. Emphasize that mobility and failures change the computational structure during execution. The operating layer must react while the robots remain physically safe.
+Timing: 55 seconds. Emphasize that mobility and failures change the computational structure during execution, and that there is nobody in the middle to re-plan for everyone. The operating layer must react while the robots remain physically safe.
 {{% /note %}}
 
 ---
@@ -68,12 +74,16 @@ Timing: 50 seconds. Emphasize that mobility and failures change the computationa
 
 <p class="eyebrow">Programming abstraction</p>
 
-# Aggregate Computing programs the collective
+# One program for the whole collective
 
 {{% multicol class="split" %}}
 {{% col class="copy-col" %}}
 
-Each device repeatedly:
+<p class="today"><strong>Usually, each robot is programmed individually</strong> — a common example is ROS.
+With hundreds of robots, that does not scale.</p>
+
+With **Aggregate Computing** the collective is programmed as a whole, and the same
+program runs decentralized on every device, which repeatedly:
 
 1. senses local information;
 2. exchanges data with its neighbors;
@@ -93,7 +103,7 @@ Each device repeatedly:
 {{% /multicol %}}
 
 {{% note %}}
-Timing: 55 seconds. Explain computational fields as values distributed across devices. Aggregate Computing raises the abstraction level without introducing a central controller.
+Timing: 60 seconds. Open on the contrast: today the unit of programming is the robot, and it does not scale. Then computational fields as values distributed across devices. Aggregate Computing raises the abstraction level without introducing a central controller.
 {{% /note %}}
 
 ---
@@ -102,26 +112,26 @@ Timing: 55 seconds. Explain computational fields as values distributed across de
 
 <p class="eyebrow">Research gap</p>
 
-# A programming model does not yet provide an operating layer
+# Aggregate Computing programs the collective, but does not manage it
 
 <div class="comparison">
 <div class="comparison-side">
-<h3>Traditional operating system</h3>
-<p>Runs processes on one machine</p>
+<h3>An aggregate application today</h3>
+<p>One collective program, deployed once</p>
 <ul>
-<li>Lifecycle and preemption</li>
-<li>Interprocess communication</li>
-<li>Resource access</li>
+<li>A single behavior runs on each device</li>
+<li>No preemption, no lifecycle management</li>
+<li>Self-stabilization guarantees recovery <em>eventually</em></li>
 </ul>
 </div>
 <div class="comparison-divider" aria-hidden="true"></div>
 <div class="comparison-side collective-side">
-<h3>Collective counterpart</h3>
-<p>Runs aggregate processes across space</p>
+<h3>What a robotic mission needs</h3>
+<p>Several behaviors, changing while the swarm flies</p>
 <ul>
-<li>Distributed lifecycle management</li>
-<li>Communication across regions</li>
-<li>Collective sensing and actuation</li>
+<li>Concurrent applications on the same devices</li>
+<li>An authorized operator that can stop or switch them</li>
+<li>Constraints that hold <em>during</em> the transient</li>
 </ul>
 </div>
 </div>
@@ -129,7 +139,7 @@ Timing: 55 seconds. Explain computational fields as values distributed across de
 <p class="takeaway centered">The runtime must manage computations whose membership and physical footprint change over time.</p>
 
 {{% note %}}
-Timing: 55 seconds. Use the OS analogy as a design lens, not as a claim that every traditional OS mechanism transfers directly.
+Timing: 60 seconds. This is the gap the paper states: typical Aggregate Computing applications run one algorithm per device, with no preemption and no lifecycle for multiple collective applications, and eventual consistency is not enough when a transient state is already unsafe. Concrete example: surveillance drones that law enforcement must be able to stop or redirect mid-mission. The OS analogy is a design lens, not a claim that every traditional OS mechanism transfers directly.
 {{% /note %}}
 
 ---
@@ -138,25 +148,55 @@ Timing: 55 seconds. Use the OS analogy as a design lens, not as a claim that eve
 
 <p class="eyebrow">PhD research vision</p>
 
-# Collective processes as the unit of management
+# Lifting operating-system services to the collective
 
 <div class="vision-statement">
 <span class="vision-label">CROS</span>
 <p>A <strong>Collective Robotic Operating System</strong> built on Aggregate Computing</p>
 </div>
 
-<div class="capability-line">
-<span>Concurrent applications</span>
-<span>Runtime adaptation</span>
-<span>Transient safety</span>
-<span>Collective sensing</span>
-<span>Resilient state</span>
+<div class="os-map">
+<div class="os-row">
+<span class="os-cap">Resource management</span>
+<span class="os-mean">Structures and resources grow where the collective needs them</span>
+<span class="os-state">investigated</span>
+</div>
+<div class="os-row">
+<span class="os-cap">Monitoring</span>
+<span class="os-mean">Collective state estimated from distributed, unreliable observations</span>
+<span class="os-state">investigated</span>
+</div>
+<div class="os-row">
+<span class="os-cap">Adaptation</span>
+<span class="os-mean">Tasks redistributed at runtime when a device is lost</span>
+<span class="os-state">investigated</span>
+</div>
+<div class="os-row">
+<span class="os-cap">Shared state</span>
+<span class="os-mean">Agreement between processes occupying different regions</span>
+<span class="os-state">investigated</span>
+</div>
+<div class="os-row">
+<span class="os-cap">Safety</span>
+<span class="os-mean">Physical constraints enforced while the collective is still moving</span>
+<span class="os-state">investigated</span>
+</div>
+<div class="os-row open">
+<span class="os-cap">Preemption &amp; lifecycle</span>
+<span class="os-mean">Start, stop and switch collective processes without redeploying</span>
+<span class="os-state">open</span>
+</div>
+<div class="os-row open">
+<span class="os-cap">Permissions</span>
+<span class="os-mean">Who is authorized to change the behavior of the collective</span>
+<span class="os-state">open</span>
+</div>
 </div>
 
 <p class="research-question">How can reusable runtime mechanisms keep collective behavior manageable while robots, goals, and networks change?</p>
 
 {{% note %}}
-Timing: 50 seconds. Present CROS as the long-term research vision. The capabilities form the evaluation dimensions for the incremental work.
+Timing: 65 seconds. Read the left column: these are the words an operating system already has, mapped onto a collective. Five have been investigated and the next slide shows them. Preemption and permissions are the two that Aggregate Computing does not offer at all today, and they are the reason this research exists: an authorized operator must be able to stop or redirect a swarm mid-mission.
 {{% /note %}}
 
 ---
@@ -165,142 +205,103 @@ Timing: 50 seconds. Present CROS as the long-term research vision. The capabilit
 
 <p class="eyebrow">Progress so far</p>
 
-# Four building blocks for the operating layer
+# A mechanism behind each investigated service
 
-<div class="contribution-grid">
+<div class="contribution-grid five">
 <figure>
 <img src="images/oneroot.gif" alt="FieldVMC structures emerging from local interactions">
-<figcaption><strong>Spatial organization</strong><span>FieldVMC</span></figcaption>
-</figure>
-<figure>
-<img src="images/replanning.gif" alt="Robot teams replanning after a mission change">
-<figcaption><strong>Runtime replanning</strong><span>Field-based missions</span></figcaption>
-</figure>
-<figure>
-<img src="images/gossip.gif" alt="A distributed network exchanging gossip state">
-<figcaption><strong>Resilient state</strong><span>Self-stabilizing gossip</span></figcaption>
+<figcaption><strong>Resource management</strong><span>FieldVMC</span><span class="cover">Structures grow, branch and repair from local resource flow</span></figcaption>
 </figure>
 <figure>
 <img src="images/dpf.gif" alt="Distributed particle filtering over a sensor network">
-<figcaption><strong>Collective sensing</strong><span>Field-based DPF</span></figcaption>
+<figcaption><strong>Monitoring</strong><span>Field-based DPF</span><span class="cover">Targets tracked from noisy observations and moving observers</span></figcaption>
+</figure>
+<figure>
+<img src="images/replanning.gif" alt="Robot teams replanning after a mission change">
+<figcaption><strong>Adaptation</strong><span>Runtime replanning</span><span class="cover">Tasks redistributed among the survivors when a robot is lost</span></figcaption>
+</figure>
+<figure>
+<img src="images/gossip.gif" alt="A distributed network exchanging gossip state">
+<figcaption><strong>Shared state</strong><span>Self-stabilizing gossip</span><span class="cover">The best value wins, stale contributions are pruned after faults</span></figcaption>
+</figure>
+<figure>
+<img src="images/carol.gif" alt="A safety filter keeping robots collision-free while they adapt">
+<figcaption><strong>Safety</strong><span>CLF/CBF filter</span><span class="cover">Unsafe commands corrected before they reach the actuators</span></figcaption>
 </figure>
 </div>
 
 <p class="takeaway centered">Each problem contributes a mechanism that can become part of a shared runtime.</p>
 
 {{% note %}}
-Timing: 65 seconds. Give one sentence per contribution. FieldVMC supports asynchronous organization. Replanning redistributes tasks. Gossip retracts obsolete state after faults. Field-based DPF separates estimation from coordination choices.
+Timing: 90 seconds, the longest slide of the talk. One sentence per contribution, in this order, no venues and no paper titles. This is where the four non-safety contributions get their airtime; the safety filter has its own talk in the technical track, so invite people there out loud and move on.
 {{% /note %}}
 
 ---
 
-{{< slide class="transient-slide" transition="fade" >}}
+{{< slide class="filter-slide" transition="fade" >}}
 
-<p class="eyebrow">Open problem</p>
+<p class="eyebrow">A closer look at one of them</p>
 
-# Eventual recovery leaves a safety gap
+# A safety filter between collective strategy and actuation
 
-{{% multicol class="split wide-gap" %}}
-{{% col class="copy-col" %}}
-
-Self-stabilizing programs guarantee recovery **after perturbations stop**.
-
-During convergence, a robot may still:
-
-- collide with another robot;
-- hit an obstacle;
-- break a required communication link.
-
-<p class="takeaway warning">Physical constraints must hold during adaptation.</p>
-
-{{% /col %}}
-{{% col class="visual-col" %}}
-
-<img class="hero-image" src="images/drones_eventual_consistency.png" alt="A swarm temporarily changing its formation near obstacles">
-
-<p class="image-caption">The collective may still be reorganizing when a command reaches an actuator</p>
-
-{{% /col %}}
-{{% /multicol %}}
-
-{{% note %}}
-Timing: 60 seconds. Contrast eventual convergence with invariants that must hold at every instant. This motivates the paper's safety-filter architecture.
-{{% /note %}}
-
----
-
-{{< slide class="architecture-slide" transition="fade" >}}
-
-<p class="eyebrow">Latest contribution</p>
-
-# Toward Safe Aggregate Computing
-
-<div class="architecture-wrap">
-<img src="images/architecture.pdf" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
-</div>
-
+<div class="filter-layout">
+<div class="filter-diagram">
+<img src="images/architecture-web.svg" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
 <div class="layer-explainer">
 <p><strong>Aggregate program</strong><br>Computes the nominal swarm command <em>u<sub>nom</sub></em></p>
 <p><strong>CLF/CBF safety filter</strong><br>Refines it into a feasible command <em>u</em> before actuation</p>
 </div>
-
-<p class="takeaway centered">Collective strategy and physical safety remain separate concerns.</p>
-
-{{% note %}}
-Timing: 80 seconds. Explain that CLFs encode convergence objectives and CBFs encode safety constraints. The local and pairwise quadratic programs run in a distributed fashion. The filter minimally modifies the nominal command when the active constraints are feasible.
-{{% /note %}}
-
----
-
-{{< slide class="results-slide" transition="fade" >}}
-
-<p class="eyebrow">Proof of concept</p>
-
-# The filter preserves active constraints in simulation
-
-<div class="result-grid">
-<figure>
+</div>
+<figure class="filter-demo">
 <img src="images/different-targets.gif" alt="Two robot groups reaching different targets while avoiding obstacles">
-<figcaption><strong>Different targets</strong><span>Collision and obstacle avoidance</span></figcaption>
-</figure>
-<figure>
-<img src="images/follow-leader.gif" alt="Robot clusters merging and following a common leader">
-<figcaption><strong>Dynamic leader election</strong><span>Connectivity preservation</span></figcaption>
+<figcaption><strong>Two groups, two targets</strong><span>Collisions and obstacles avoided throughout the transient</span></figcaption>
 </figure>
 </div>
 
-<p class="scope-note"><strong>Current scope:</strong> proof-of-concept simulations. Quantitative scalability and overhead evaluation remain future work.</p>
+<p class="scope-note"><strong>Scope:</strong> proof-of-concept simulations; quantitative scalability and overhead remain future work. Collective strategy and physical safety stay separate concerns.</p>
 
 {{% note %}}
-Timing: 70 seconds. Describe the two demonstrated scenarios. State the scope clearly: the paper shows feasibility in simulation and does not yet provide a quantitative performance evaluation.
+Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety constraints, and the local and pairwise quadratic programs run distributed. Keep it to the architecture and one scenario: the full treatment is the technical-track talk, and this is the place to invite people to it out loud. State the scope honestly.
 {{% /note %}}
 
 ---
 
 {{< slide class="closing-slide" transition="fade" >}}
 
-<p class="eyebrow">Next research step</p>
+<p class="eyebrow">Wrap-up</p>
 
-# A shared runtime for managed collective adaptation
+# Takeaways and future work
 
 <div class="closing-layout">
-<div>
-<p class="closing-lead">Integrate the building blocks into a runtime that can:</p>
+<div class="wrap-up">
+
+<div class="wrap-col">
+<p class="wrap-label">Takeaways</p>
 <ul class="closing-list">
-<li>run and preempt multiple aggregate processes;</li>
-<li>share state across dynamic regions;</li>
-<li>switch strategies while preserving safety.</li>
+<li>For swarm missions the right unit of programming is the <strong>collective</strong>, not the robot;</li>
+<li>Aggregate Computing gives that abstraction, but no way to <strong>manage</strong> what it runs;</li>
+<li>Five operating-system services already have a decentralized mechanism behind them.</li>
 </ul>
-<p class="future-note"><strong>Planned extension:</strong> adaptive navigation policies that escape local minima, then resume the original objective.</p>
+</div>
+
+<div class="wrap-col next-col">
+<p class="wrap-label">Future work</p>
+<ul class="closing-list">
+<li>Combine spatial organization and safety: <strong>complex shapes that grow and move</strong> without unsafe transients;</li>
+<li>Add the two missing services: <strong>preemption and lifecycle</strong>, and <strong>permissions</strong> over collective behavior;</li>
+<li>Integrate the mechanisms into a <strong>CROS prototype</strong> in Collektive.</li>
+</ul>
+</div>
+
 </div>
 <div class="closing-mark">
-<img src="images/qr.png" alt="QR code linking to the project materials">
-<p>Code and experiments</p>
+<img src="images/qr.png" alt="QR code linking to my personal portfolio">
+<p>Personal portfolio</p>
 </div>
 </div>
 
 <p class="final-line">Make the swarm programmable as one system, while keeping its adaptation explicit and safe.</p>
 
 {{% note %}}
-Timing: 45 seconds. Close on the integration goal. Clarify that strategy switching around local minima is planned work, not a result of the current paper. Leave roughly 30 seconds of buffer within the 10-minute slot.
+Timing: 60 seconds. Read the takeaways, then the future work. On the second future-work point, say that preemption and permissions are the two rows left open in the vision map, and that aggregate processes already give a model for concurrent collective computations: what is missing is how such a process expands and contracts across space. The QR code is the personal portfolio, so point at it while inviting questions.
 {{% /note %}}
