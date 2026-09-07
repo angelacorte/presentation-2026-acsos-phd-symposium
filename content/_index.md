@@ -225,7 +225,7 @@ Timing: 65 seconds. Read the left column: these are the words an operating syste
 <figcaption><strong>Shared state</strong><span>Self-stabilizing gossip</span><span class="cover">The best value wins, stale contributions are pruned after faults</span></figcaption>
 </figure>
 <figure>
-<img src="images/carol.gif" alt="A safety filter keeping robots collision-free while they adapt">
+<img src="images/different-targets.gif" alt="Two robot groups reaching different targets while avoiding each other and an obstacle">
 <figcaption><strong>Safety</strong><span>CLF/CBF filter</span><span class="cover">Unsafe commands corrected before they reach the actuators</span></figcaption>
 </figure>
 </div>
@@ -246,22 +246,22 @@ Timing: 90 seconds, the longest slide of the talk. One sentence per contribution
 
 <div class="filter-layout">
 <div class="filter-diagram">
-<img src="images/architecture-web.svg" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
+<img src="images/architecture.png" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
 <div class="layer-explainer">
 <p><strong>Aggregate program</strong><br>Computes the nominal swarm command <em>u<sub>nom</sub></em></p>
 <p><strong>CLF/CBF safety filter</strong><br>Refines it into a feasible command <em>u</em> before actuation</p>
 </div>
 </div>
 <figure class="filter-demo">
-<img src="images/different-targets.gif" alt="Two robot groups reaching different targets while avoiding obstacles">
-<figcaption><strong>Two groups, two targets</strong><span>Collisions and obstacles avoided throughout the transient</span></figcaption>
+<img src="images/follow-leader.gif" alt="Robot clusters merging and following a common leader">
+<figcaption><strong>Dynamic leader election</strong><span>Connectivity preserved while separate clusters merge onto one leader</span></figcaption>
 </figure>
 </div>
 
 <p class="scope-note"><strong>Scope:</strong> proof-of-concept simulations; quantitative scalability and overhead remain future work. Collective strategy and physical safety stay separate concerns.</p>
 
 {{% note %}}
-Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety constraints, and the local and pairwise quadratic programs run distributed. Keep it to the architecture and one scenario: the full treatment is the technical-track talk, and this is the place to invite people to it out loud. State the scope honestly.
+Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety constraints, and the local and pairwise quadratic programs run distributed. Keep it to the architecture and one scenario: clusters merge onto a common leader and the filter preserves the communication links while they do. The full treatment is the technical-track talk, and this is the place to invite people to it out loud. State the scope honestly.
 {{% /note %}}
 
 ---
