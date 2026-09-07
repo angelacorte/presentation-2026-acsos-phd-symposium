@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/presentation-2026-acsos-phd-symposium/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/presentation-2026-acsos-phd-symposium/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/presentation-2026-acsos-phd-symposium/css/custom-theme.min.93ccb92697b689aaca7acc1003a74fca94e6c9a265958a8e7b272da3b9d6675c.css" id="theme"><link rel="stylesheet" href="/presentation-2026-acsos-phd-symposium/highlight-js/solarized-dark.min.css">
+  <link rel="stylesheet" href="/presentation-2026-acsos-phd-symposium/css/custom-theme.min.a1fc5729cee22d8c9768326ffe2bfdfed0eef6625e93680c2b64e04f7d1ec8e1.css" id="theme"><link rel="stylesheet" href="/presentation-2026-acsos-phd-symposium/highlight-js/solarized-dark.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
@@ -193,41 +193,61 @@ program runs decentralized on every device, which repeatedly:</p>
 
 <section data-noprocess="" data-shortcode-slide="" class="portfolio-slide" data-transition="fade">
   
-<p class="eyebrow">Progress so far</p>
-<h1 id="a-mechanism-behind-each-investigated-service">A mechanism behind each investigated service</h1>
-<div class="contribution-grid five">
+<p class="eyebrow">Investigated services — 1 of 3</p>
+<h1 id="organising-the-collective-in-space">Organising the collective in space</h1>
+<div class="result-grid pair">
 <figure>
-<img src="images/oneroot.gif" alt="FieldVMC structures emerging from local interactions">
-<figcaption><strong>Resource management</strong><span>FieldVMC</span><span class="cover">Structures grow, branch and repair from local resource flow</span></figcaption>
+<img src="images/oneroot.gif" alt="FieldVMC structures growing and branching from local interactions">
+<figcaption><strong>Resource management</strong><span>FieldVMC</span>
+<span class="detail">Structures grow, branch and repair from a local flow of resources, with no global blueprint.</span>
+<span class="detail alt">Resources are routed towards the most successful area of the network: the shape is the outcome of a competition, not of a plan.</span>
+</figcaption>
 </figure>
 <figure>
-<img src="images/dpf.gif" alt="Distributed particle filtering over a sensor network">
-<figcaption><strong>Monitoring</strong><span>Field-based DPF</span><span class="cover">Targets tracked from noisy observations and moving observers</span></figcaption>
-</figure>
-<figure>
-<img src="images/replanning.gif" alt="Robot teams replanning after a mission change">
-<figcaption><strong>Adaptation</strong><span>Runtime replanning</span><span class="cover">Tasks redistributed among the survivors when a robot is lost</span></figcaption>
-</figure>
-<figure>
-<img src="images/gossip.gif" alt="A distributed network exchanging gossip state">
-<figcaption><strong>Shared state</strong><span>Self-stabilizing gossip</span><span class="cover">The best value wins, stale contributions are pruned after faults</span></figcaption>
-</figure>
-<figure>
-<img src="images/carol.gif" alt="A safety filter keeping robots collision-free while they adapt">
-<figcaption><strong>Safety</strong><span>CLF/CBF filter</span><span class="cover">Unsafe commands corrected before they reach the actuators</span></figcaption>
+<img src="images/replanning.gif" alt="A swarm redistributing tasks after losing a robot">
+<figcaption><strong>Adaptation</strong><span>Runtime replanning</span>
+<span class="detail">A mission is assigned to the swarm; when a robot is lost, its tasks are redistributed among the survivors.</span>
+<span class="detail alt">The plan is repaired by the collective while it operates, without re-running a global planner.</span>
+</figcaption>
 </figure>
 </div>
-<p class="takeaway centered">Each problem contributes a mechanism that can become part of a shared runtime.</p>
 
 
 
-<aside class="notes"><p>Timing: 90 seconds, the longest slide of the talk. One sentence per contribution, in this order, no venues and no paper titles. This is where the four non-safety contributions get their airtime; the safety filter has its own talk in the technical track, so invite people there out loud and move on.</p>
+<aside class="notes"><p>Timing: 70 seconds. Two contributions, one minute of speaking. On FieldVMC insist on the second line: nobody designs the shape, it emerges from where the resources flow. On replanning insist that no planner is re-run: the swarm repairs its own plan while flying.</p>
+</aside>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" class="portfolio-slide" data-transition="fade">
+  
+<p class="eyebrow">Investigated services — 2 of 3</p>
+<h1 id="knowing-what-is-happening-and-agreeing-on-it">Knowing what is happening, and agreeing on it</h1>
+<div class="result-grid pair">
+<figure>
+<img src="images/dpf.gif" alt="Field-based distributed particle filtering tracking multiple targets">
+<figcaption><strong>Monitoring</strong><span>Field-based distributed particle filtering</span>
+<span class="detail">Several targets tracked from noisy observations, with observers that move and lose connectivity.</span>
+<span class="detail alt">Where fusion happens, who leads, how far information travels: coordination is decoupled from the filtering logic, so it can be changed without redesigning the estimator.</span>
+</figcaption>
+</figure>
+<figure>
+<img src="images/gossip.gif" alt="Self-stabilizing min-max gossip converging over a network">
+<figcaption><strong>Shared state</strong><span>Self-stabilizing min–max gossip</span>
+<span class="detail">The best value in the network wins, and the collective converges to it from any state.</span>
+<span class="detail alt">Each message carries the path of nodes that acknowledged it: that is what lets stale contributions be pruned, which classical min–max gossip cannot do.</span>
+</figcaption>
+</figure>
+</div>
+
+
+
+<aside class="notes"><p>Timing: 70 seconds. On the DPF, the point is not the filter but the decoupling: the same estimator can be centralised, leader-based or fully decentralised by changing the coordination pattern. On the gossip, say plainly that monotonic min-max cannot retract a value once merged, and that the acknowledgement path is what makes retraction possible; it is proved self-stabilizing and shipped as a Collektive library.</p>
 </aside>
 </section>
 
 <section data-noprocess="" data-shortcode-slide="" class="filter-slide" data-transition="fade">
   
-<p class="eyebrow">A closer look at one of them</p>
+<p class="eyebrow">Investigated services — 3 of 3</p>
 <h1 id="a-safety-filter-between-collective-strategy-and-actuation">A safety filter between collective strategy and actuation</h1>
 <div class="filter-layout">
 <div class="filter-diagram">
@@ -238,15 +258,15 @@ program runs decentralized on every device, which repeatedly:</p>
 </div>
 </div>
 <figure class="filter-demo">
-<img src="images/different-targets.gif" alt="Two robot groups reaching different targets while avoiding obstacles">
-<figcaption><strong>Two groups, two targets</strong><span>Collisions and obstacles avoided throughout the transient</span></figcaption>
+<img src="images/follow-leader.gif" alt="Robot clusters merging and following a common leader">
+<figcaption><strong>Dynamic leader election</strong><span>Connectivity preserved while separate clusters merge onto one leader</span></figcaption>
 </figure>
 </div>
 <p class="scope-note"><strong>Scope:</strong> proof-of-concept simulations; quantitative scalability and overhead remain future work. Collective strategy and physical safety stay separate concerns.</p>
 
 
 
-<aside class="notes"><p>Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety constraints, and the local and pairwise quadratic programs run distributed. Keep it to the architecture and one scenario: the full treatment is the technical-track talk, and this is the place to invite people to it out loud. State the scope honestly.</p>
+<aside class="notes"><p>Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety constraints, and the local and pairwise quadratic programs run distributed. Keep it to the architecture and one scenario: clusters merge onto a common leader and the filter preserves the communication links while they do. The full treatment is the technical-track talk, and this is the place to invite people to it out loud. State the scope honestly.</p>
 </aside>
 </section>
 
