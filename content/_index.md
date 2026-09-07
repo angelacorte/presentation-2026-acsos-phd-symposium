@@ -203,50 +203,71 @@ Timing: 65 seconds. Read the left column: these are the words an operating syste
 
 {{< slide class="portfolio-slide" transition="fade" >}}
 
-<p class="eyebrow">Progress so far</p>
+<p class="eyebrow">Investigated services &mdash; 1 of 3</p>
 
-# A mechanism behind each investigated service
+# Organising the collective in space
 
-<div class="contribution-grid five">
+<div class="result-grid pair">
 <figure>
-<img src="images/oneroot.gif" alt="FieldVMC structures emerging from local interactions">
-<figcaption><strong>Resource management</strong><span>FieldVMC</span><span class="cover">Structures grow, branch and repair from local resource flow</span></figcaption>
+<img src="images/oneroot.gif" alt="FieldVMC structures growing and branching from local interactions">
+<figcaption><strong>Resource management</strong><span>FieldVMC</span>
+<span class="detail">Structures grow, branch and repair from a local flow of resources, with no global blueprint.</span>
+<span class="detail alt">Resources are routed towards the most successful area of the network: the shape is the outcome of a competition, not of a plan.</span>
+</figcaption>
 </figure>
 <figure>
-<img src="images/dpf.gif" alt="Distributed particle filtering over a sensor network">
-<figcaption><strong>Monitoring</strong><span>Field-based DPF</span><span class="cover">Targets tracked from noisy observations and moving observers</span></figcaption>
-</figure>
-<figure>
-<img src="images/replanning.gif" alt="Robot teams replanning after a mission change">
-<figcaption><strong>Adaptation</strong><span>Runtime replanning</span><span class="cover">Tasks redistributed among the survivors when a robot is lost</span></figcaption>
-</figure>
-<figure>
-<img src="images/gossip.gif" alt="A distributed network exchanging gossip state">
-<figcaption><strong>Shared state</strong><span>Self-stabilizing gossip</span><span class="cover">The best value wins, stale contributions are pruned after faults</span></figcaption>
-</figure>
-<figure>
-<img src="images/different-targets.gif" alt="Two robot groups reaching different targets while avoiding each other and an obstacle">
-<figcaption><strong>Safety</strong><span>CLF/CBF filter</span><span class="cover">Unsafe commands corrected before they reach the actuators</span></figcaption>
+<img src="images/replanning.gif" alt="A swarm redistributing tasks after losing a robot">
+<figcaption><strong>Adaptation</strong><span>Runtime replanning</span>
+<span class="detail">A mission is assigned to the swarm; when a robot is lost, its tasks are redistributed among the survivors.</span>
+<span class="detail alt">The plan is repaired by the collective while it operates, without re-running a global planner.</span>
+</figcaption>
 </figure>
 </div>
 
-<p class="takeaway centered">Each problem contributes a mechanism that can become part of a shared runtime.</p>
+{{% note %}}
+Timing: 70 seconds. Two contributions, one minute of speaking. On FieldVMC insist on the second line: nobody designs the shape, it emerges from where the resources flow. On replanning insist that no planner is re-run: the swarm repairs its own plan while flying.
+{{% /note %}}
+
+---
+
+{{< slide class="portfolio-slide" transition="fade" >}}
+
+<p class="eyebrow">Investigated services &mdash; 2 of 3</p>
+
+# Knowing what is happening, and agreeing on it
+
+<div class="result-grid pair">
+<figure>
+<img src="images/dpf.gif" alt="Field-based distributed particle filtering tracking multiple targets">
+<figcaption><strong>Monitoring</strong><span>Field-based distributed particle filtering</span>
+<span class="detail">Several targets tracked from noisy observations, with observers that move and lose connectivity.</span>
+<span class="detail alt">Where fusion happens, who leads, how far information travels: coordination is decoupled from the filtering logic, so it can be changed without redesigning the estimator.</span>
+</figcaption>
+</figure>
+<figure>
+<img src="images/gossip.gif" alt="Self-stabilizing min-max gossip converging over a network">
+<figcaption><strong>Shared state</strong><span>Self-stabilizing min&ndash;max gossip</span>
+<span class="detail">The best value in the network wins, and the collective converges to it from any state.</span>
+<span class="detail alt">Each message carries the path of nodes that acknowledged it: that is what lets stale contributions be pruned, which classical min&ndash;max gossip cannot do.</span>
+</figcaption>
+</figure>
+</div>
 
 {{% note %}}
-Timing: 90 seconds, the longest slide of the talk. One sentence per contribution, in this order, no venues and no paper titles. This is where the four non-safety contributions get their airtime; the safety filter has its own talk in the technical track, so invite people there out loud and move on.
+Timing: 70 seconds. On the DPF, the point is not the filter but the decoupling: the same estimator can be centralised, leader-based or fully decentralised by changing the coordination pattern. On the gossip, say plainly that monotonic min-max cannot retract a value once merged, and that the acknowledgement path is what makes retraction possible; it is proved self-stabilizing and shipped as a Collektive library.
 {{% /note %}}
 
 ---
 
 {{< slide class="filter-slide" transition="fade" >}}
 
-<p class="eyebrow">A closer look at one of them</p>
+<p class="eyebrow">Investigated services &mdash; 3 of 3</p>
 
 # A safety filter between collective strategy and actuation
 
 <div class="filter-layout">
 <div class="filter-diagram">
-<img src="images/architecture.png" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
+<img src="images/architecture-web.svg" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
 <div class="layer-explainer">
 <p><strong>Aggregate program</strong><br>Computes the nominal swarm command <em>u<sub>nom</sub></em></p>
 <p><strong>CLF/CBF safety filter</strong><br>Refines it into a feasible command <em>u</em> before actuation</p>
