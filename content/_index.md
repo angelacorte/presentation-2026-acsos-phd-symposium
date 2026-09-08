@@ -236,20 +236,20 @@ program runs decentralized on every device, which repeatedly:
 
 {{< slide class="filter-slide" transition="fade" >}}
 
-# A safety filter between collective strategy and actuation [6]
+# A safety filter between collective strategy and actuation
 
 <div class="layer-explainer">
-<p><strong>Aggregate program</strong><br>Computes the wanted behavior towards the goal</p>
-<p class="filtered"><strong>Safety filter</strong><br>Refines it into a feasible command before actuation</p>
+<p><strong>Aggregate program</strong> &middot; computes the wanted behavior towards the goal</p>
+<p class="filtered"><strong>Safety filter</strong> &middot; refines it into a feasible command before actuation</p>
 </div>
 
 <div class="filter-layout">
 <figure class="filter-diagram">
-<img src="images/different-targets.gif" alt="Robots reaching different targets while avoiding obstacles">
+<img src="images/different-targets-plot.gif" alt="Robots reaching different targets while avoiding obstacles">
 <figcaption><strong>Different goals while collaborating</strong></figcaption>
 </figure>
 <figure class="filter-demo">
-<img src="images/follow-leader.gif" alt="Robot clusters merging and following a common leader">
+<img src="images/follow-leader-plot.gif" alt="Robot clusters merging and following a common leader">
 <figcaption><strong>One shared goal: follow the leader</strong></figcaption>
 </figure>
 </div>
@@ -261,6 +261,8 @@ program runs decentralized on every device, which repeatedly:
 ---
 
 {{< slide class="open-slide" transition="fade" >}}
+
+<p class="eyebrow">The two rows still open</p>
 
 # Open challenges
 
@@ -292,6 +294,8 @@ program runs decentralized on every device, which repeatedly:
 ---
 
 {{< slide class="closing-slide" transition="fade" >}}
+
+<p class="eyebrow">Wrap-up</p>
 
 # Future work
 
