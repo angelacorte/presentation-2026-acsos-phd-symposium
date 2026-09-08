@@ -1,9 +1,7 @@
 +++
-
 title = "Toward a Collective Robotic Operating System"
 description = "ACSOS 2026 PhD Symposium presentation"
 outputs = ["Reveal"]
-
 +++
 
 {{< slide class="title-slide" transition="fade" >}}
@@ -11,11 +9,9 @@ outputs = ["Reveal"]
 <div class="title-layout">
 <div class="title-copy">
 
-<p class="eyebrow">@ ACSOS 2026 · PhD Symposium</p>
+<p class="eyebrow">PhD Symposium @ ACSOS 2026</p>
 
-# Towards Collective Robotic Operating Systems
-
-<p class="subtitle">Aggregate Computing for adaptive robot swarms</p>
+# Towards Collective Robotic Operating Systems through Aggregate Computing
 
 <p class="author"><strong>Angela Cortecchia</strong><br>
 Supervisor: Prof. Danilo Pianini <br>Co-supervisor: Prof. Mirko Viroli</p>
@@ -29,10 +25,6 @@ Supervisor: Prof. Danilo Pianini <br>Co-supervisor: Prof. Mirko Viroli</p>
 <img src="images/drones_avoiding_formation.png" alt="A robot swarm reorganizing around obstacles">
 </div>
 </div>
-
-{{% note %}}
-Timing: 30 seconds. Introduce the research goal: make a swarm programmable and manageable as one adaptive system.
-{{% /note %}}
 
 ---
 
@@ -64,10 +56,6 @@ A robotic collective must pursue a **system-level goal** with only local views a
 {{% /col %}}
 {{% /multicol %}}
 
-{{% note %}}
-Timing: 55 seconds. Emphasize that mobility and failures change the computational structure during execution, and that there is nobody in the middle to re-plan for everyone. The operating layer must react while the robots remain physically safe.
-{{% /note %}}
-
 ---
 
 {{< slide class="aggregate-slide" transition="fade" >}}
@@ -97,14 +85,8 @@ program runs decentralized on every device, which repeatedly:
 
 <img src="images/collective.svg" alt="Local device interactions producing collective behavior">
 
-<p class="image-caption">One program, distributed execution, collective outcome</p>
-
 {{% /col %}}
 {{% /multicol %}}
-
-{{% note %}}
-Timing: 60 seconds. Open on the contrast: today the unit of programming is the robot, and it does not scale. Then computational fields as values distributed across devices. Aggregate Computing raises the abstraction level without introducing a central controller.
-{{% /note %}}
 
 ---
 
@@ -112,11 +94,11 @@ Timing: 60 seconds. Open on the contrast: today the unit of programming is the r
 
 <p class="eyebrow">Research gap</p>
 
-# Aggregate Computing programs the collective, but does not manage it
+# What is missing?
 
 <div class="comparison">
 <div class="comparison-side">
-<h3>An aggregate application today</h3>
+<h3>Classic Aggregate Computing applications</h3>
 <p>One collective program, deployed once</p>
 <ul>
 <li>A single behavior runs on each device</li>
@@ -126,7 +108,7 @@ Timing: 60 seconds. Open on the contrast: today the unit of programming is the r
 </div>
 <div class="comparison-divider" aria-hidden="true"></div>
 <div class="comparison-side collective-side">
-<h3>What a robotic mission needs</h3>
+<h3>What a swarm mission needs</h3>
 <p>Several behaviors, changing while the swarm flies</p>
 <ul>
 <li>Concurrent applications on the same devices</li>
@@ -136,11 +118,7 @@ Timing: 60 seconds. Open on the contrast: today the unit of programming is the r
 </div>
 </div>
 
-<p class="takeaway centered">The runtime must manage computations whose membership and physical footprint change over time.</p>
-
-{{% note %}}
-Timing: 60 seconds. This is the gap the paper states: typical Aggregate Computing applications run one algorithm per device, with no preemption and no lifecycle for multiple collective applications, and eventual consistency is not enough when a transient state is already unsafe. Concrete example: surveillance drones that law enforcement must be able to stop or redirect mid-mission. The OS analogy is a design lens, not a claim that every traditional OS mechanism transfers directly.
-{{% /note %}}
+<p class="takeaway centered">The runtime must support dynamic, safe, and authorized changes to the collective behavior.</p>
 
 ---
 
@@ -148,11 +126,10 @@ Timing: 60 seconds. This is the gap the paper states: typical Aggregate Computin
 
 <p class="eyebrow">PhD research vision</p>
 
-# Lifting operating-system services to the collective
+# From Building Blocks to a Collective Robotic Operating System
 
 <div class="vision-statement">
-<span class="vision-label">CROS</span>
-<p>A <strong>Collective Robotic Operating System</strong> built on Aggregate Computing</p>
+<p>Reusable set of mechanisms to manage collective behavior, towards an operating system-oriented architecture.</p>
 </div>
 
 <div class="os-map">
@@ -172,7 +149,7 @@ Timing: 60 seconds. This is the gap the paper states: typical Aggregate Computin
 <span class="os-state">investigated</span>
 </div>
 <div class="os-row">
-<span class="os-cap">Shared state</span>
+<span class="os-cap">Consensus</span>
 <span class="os-mean">Agreement between processes occupying different regions</span>
 <span class="os-state">investigated</span>
 </div>
@@ -195,121 +172,136 @@ Timing: 60 seconds. This is the gap the paper states: typical Aggregate Computin
 
 <p class="research-question">How can reusable runtime mechanisms keep collective behavior manageable while robots, goals, and networks change?</p>
 
-{{% note %}}
-Timing: 65 seconds. Read the left column: these are the words an operating system already has, mapped onto a collective. Five have been investigated and the next slide shows them. Preemption and permissions are the two that Aggregate Computing does not offer at all today, and they are the reason this research exists: an authorized operator must be able to stop or redirect a swarm mid-mission.
-{{% /note %}}
-
 ---
 
 {{< slide class="portfolio-slide" transition="fade" >}}
 
-<p class="eyebrow">Investigated services &mdash; 1 of 3</p>
-
-# Organising the collective in space
-
 <div class="result-grid pair">
 <figure>
+<h2>Resource management</h2>
 <img src="images/oneroot.gif" alt="FieldVMC structures growing and branching from local interactions">
-<figcaption><strong>Resource management</strong><span>FieldVMC</span>
+<figcaption><strong>FieldVMC [1]</strong>
 <span class="detail">Structures grow, branch and repair from a local flow of resources, with no global blueprint.</span>
-<span class="detail alt">Resources are routed towards the most successful area of the network: the shape is the outcome of a competition, not of a plan.</span>
+<span class="detail alt">Resources are routed towards the most successful area of the network.</span>
 </figcaption>
 </figure>
 <figure>
+<h2>Adaptation</h2>
 <img src="images/replanning.gif" alt="A swarm redistributing tasks after losing a robot">
-<figcaption><strong>Adaptation</strong><span>Runtime replanning</span>
+<figcaption><strong>Runtime replanning [2]</strong>
 <span class="detail">A mission is assigned to the swarm; when a robot is lost, its tasks are redistributed among the survivors.</span>
 <span class="detail alt">The plan is repaired by the collective while it operates, without re-running a global planner.</span>
 </figcaption>
 </figure>
 </div>
 
-{{% note %}}
-Timing: 70 seconds. Two contributions, one minute of speaking. On FieldVMC insist on the second line: nobody designs the shape, it emerges from where the resources flow. On replanning insist that no planner is re-run: the swarm repairs its own plan while flying.
-{{% /note %}}
+{{% footer %}}
+[1] A. Cortecchia, G. Ciatto, R. Casadei, and D. Pianini, "FieldVMC: an asynchronous model and platform for self-organising morphogenesis of artificial structures". Complex Intell. Syst. 12(2) (2026)
+
+[2] G. Aguzzi, M. Baiardi, A. Cortecchia, B. Miloradovic, A. Papadopoulos, D. Pianini, and M. Viroli, "A Field-Based Approach for Runtime Replanning in Swarm Robotics Missions". (ACSOS 2025)
+{{% /footer %}}
 
 ---
 
 {{< slide class="portfolio-slide" transition="fade" >}}
 
-<p class="eyebrow">Investigated services &mdash; 2 of 3</p>
-
-# Knowing what is happening, and agreeing on it
-
 <div class="result-grid pair">
 <figure>
+<h2>Monitoring</h2>
 <img src="images/dpf.gif" alt="Field-based distributed particle filtering tracking multiple targets">
-<figcaption><strong>Monitoring</strong><span>Field-based distributed particle filtering</span>
+<figcaption><strong>Field-based distributed particle filtering [3, 4]</strong>
 <span class="detail">Several targets tracked from noisy observations, with observers that move and lose connectivity.</span>
 <span class="detail alt">Where fusion happens, who leads, how far information travels: coordination is decoupled from the filtering logic, so it can be changed without redesigning the estimator.</span>
 </figcaption>
 </figure>
 <figure>
+<h2>Consensus</h2>
 <img src="images/gossip.gif" alt="Self-stabilizing min-max gossip converging over a network">
-<figcaption><strong>Shared state</strong><span>Self-stabilizing min&ndash;max gossip</span>
+<figcaption><strong>Self-stabilizing min&ndash;max gossip [5]</strong>
 <span class="detail">The best value in the network wins, and the collective converges to it from any state.</span>
 <span class="detail alt">Each message carries the path of nodes that acknowledged it: that is what lets stale contributions be pruned, which classical min&ndash;max gossip cannot do.</span>
 </figcaption>
 </figure>
 </div>
 
-{{% note %}}
-Timing: 70 seconds. On the DPF, the point is not the filter but the decoupling: the same estimator can be centralised, leader-based or fully decentralised by changing the coordination pattern. On the gossip, say plainly that monotonic min-max cannot retract a value once merged, and that the acknowledgement path is what makes retraction possible; it is proved self-stabilizing and shipped as a Collektive library.
-{{% /note %}}
+{{% footer %}}
+[3] A. Cortecchia, D. Domini, G. Ciatto, R. Casadei, D. Pianini and M. Viroli, "Flexible Distributed Particle Filtering for the Internet of Things via Aggregate Computing," (DCOSS-IoT 2026)
+
+[4] A. Cortecchia, D. Domini, G. Ciatto, R. Casadei, and M. Viroli, "Multi-Target Tracking via Field-Based Distributed Particle Filtering" (ACSOS 2026)
+
+[5] A. Cortecchia, D. Pianini, and M. Viroli, "Self-Stabilizing Min-Max Gossip for Aggregate Computing" (COORDINATION 2026)
+{{% /footer %}}
 
 ---
 
 {{< slide class="filter-slide" transition="fade" >}}
 
-<p class="eyebrow">Investigated services &mdash; 3 of 3</p>
+# A safety filter between collective strategy and actuation [6]
 
-# A safety filter between collective strategy and actuation
+<div class="layer-explainer">
+<p><strong>Aggregate program</strong><br>Computes the wanted behavior towards the goal</p>
+<p class="filtered"><strong>Safety filter</strong><br>Refines it into a feasible command before actuation</p>
+</div>
 
 <div class="filter-layout">
-<div class="filter-diagram">
-<img src="images/architecture-web.svg" alt="Architecture combining an aggregate strategy layer with a distributed safety filter">
-<div class="layer-explainer">
-<p><strong>Aggregate program</strong><br>Computes the nominal swarm command <em>u<sub>nom</sub></em></p>
-<p><strong>CLF/CBF safety filter</strong><br>Refines it into a feasible command <em>u</em> before actuation</p>
-</div>
-</div>
+<figure class="filter-diagram">
+<img src="images/different-targets.gif" alt="Robots reaching different targets while avoiding obstacles">
+<figcaption><strong>Different goals while collaborating</strong></figcaption>
+</figure>
 <figure class="filter-demo">
 <img src="images/follow-leader.gif" alt="Robot clusters merging and following a common leader">
-<figcaption><strong>Dynamic leader election</strong><span>Connectivity preserved while separate clusters merge onto one leader</span></figcaption>
+<figcaption><strong>One shared goal: follow the leader</strong></figcaption>
 </figure>
 </div>
 
-<p class="scope-note"><strong>Scope:</strong> proof-of-concept simulations; quantitative scalability and overhead remain future work. Collective strategy and physical safety stay separate concerns.</p>
+{{% footer %}}
+[6] A. Cortecchia, A. Papadopoulos, and D. Pianini "Toward Safe Aggregate Computing: A Distributed Control-Theoretic Safety Filter for Robot Swarms" (ACSOS-C 2026)
+{{% /footer %}}
 
-{{% note %}}
-Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety constraints, and the local and pairwise quadratic programs run distributed. Keep it to the architecture and one scenario: clusters merge onto a common leader and the filter preserves the communication links while they do. The full treatment is the technical-track talk, and this is the place to invite people to it out loud. State the scope honestly.
-{{% /note %}}
+---
+
+{{< slide class="open-slide" transition="fade" >}}
+
+# Open challenges
+
+<div class="comparison open-comparison">
+<div class="comparison-side">
+<h3>Preemption &amp; lifecycle</h3>
+<p>Change what the collective runs, without redeploying it</p>
+<ul>
+<li><strong>Start, stop and switch</strong> collective behaviors while the swarm operates</li>
+<li>Run <strong>several collective programs concurrently</strong> on the same devices</li>
+<li>Today a program's lifecycle is <em>tied to the lifecycle of the devices</em></li>
+<li>Aggregate processes are a first step: how a process <strong>expands and contracts in space</strong> is still open</li>
+</ul>
+</div>
+<div class="comparison-divider" aria-hidden="true"></div>
+<div class="comparison-side">
+<h3>Users &amp; permissions</h3>
+<p>Decide who may change the collective, and where</p>
+<ul>
+<li>Only <strong>authorized operators</strong> can alter the behavior of the swarm</li>
+<li>Programs <strong>confined to a geographic area</strong>, while the devices keep moving</li>
+<li>Requires a <em>user model</em> and permissions over collective behavior</li>
+</ul>
+</div>
+</div>
+
+<p class="takeaway centered warning">Mission-critical swarms need a lifecycle and an authority model, not only a coordination algorithm.</p>
 
 ---
 
 {{< slide class="closing-slide" transition="fade" >}}
 
-<p class="eyebrow">Wrap-up</p>
-
-# Takeaways and future work
+# Future work
 
 <div class="closing-layout">
-<div class="wrap-up">
-
-<div class="wrap-col">
-<p class="wrap-label">Takeaways</p>
-<ul class="closing-list">
-<li>For swarm missions the right unit of programming is the <strong>collective</strong>, not the robot;</li>
-<li>Aggregate Computing gives that abstraction, but no way to <strong>manage</strong> what it runs;</li>
-<li>Five operating-system services already have a decentralized mechanism behind them.</li>
-</ul>
-</div>
+<div class="wrap-up single">
 
 <div class="wrap-col next-col">
-<p class="wrap-label">Future work</p>
 <ul class="closing-list">
 <li>Combine spatial organization and safety: <strong>complex shapes that grow and move</strong> without unsafe transients;</li>
-<li>Add the two missing services: <strong>preemption and lifecycle</strong>, and <strong>permissions</strong> over collective behavior;</li>
+<li>Add the two missing building blocks: <strong>preemption and lifecycle</strong>, and <strong>permissions</strong> over collective behavior;</li>
 <li>Integrate the mechanisms into a <strong>CROS prototype</strong> in Collektive.</li>
 </ul>
 </div>
@@ -322,7 +314,3 @@ Timing: 70 seconds. CLFs encode convergence objectives, CBFs encode safety const
 </div>
 
 <p class="final-line">Make the swarm programmable as one system, while keeping its adaptation explicit and safe.</p>
-
-{{% note %}}
-Timing: 60 seconds. Read the takeaways, then the future work. On the second future-work point, say that preemption and permissions are the two rows left open in the vision map, and that aggregate processes already give a model for concurrent collective computations: what is missing is how such a process expands and contracts across space. The QR code is the personal portfolio, so point at it while inviting questions.
-{{% /note %}}
