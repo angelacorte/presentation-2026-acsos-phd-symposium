@@ -615,20 +615,24 @@ $heading4Size: 0.76em;
 	align-items: start;
 	display: grid;
 	gap: 56px;
-	grid-template-columns: 1.1fr 0.9fr;
+	grid-template-columns: 1fr 1fr;
 	margin: 12px auto 0;
 	max-width: 1620px;
 }
 
 .reveal .filter-diagram img {
+	height: 380px;
+	object-fit: contain;
 	width: 100%;
 }
 
+// The rules above the two explainer items must line up with the rule above the
+// demo caption: gif height = diagram height + this margin.
 .reveal .filter-slide .layer-explainer {
 	display: grid;
 	gap: 30px;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	margin-top: 30px;
+	margin-top: 90px;
 }
 
 .reveal .filter-demo {
@@ -637,7 +641,7 @@ $heading4Size: 0.76em;
 
 .reveal .filter-demo img {
 	background: var(--paper);
-	height: 430px;
+	height: 470px;
 	object-fit: contain;
 	width: 100%;
 }
