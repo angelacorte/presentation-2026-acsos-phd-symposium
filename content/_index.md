@@ -239,8 +239,8 @@ program runs decentralized on every device, which repeatedly:
 # A safety filter between collective strategy and actuation
 
 <div class="layer-explainer">
-<p><strong>Aggregate program</strong> &middot; computes the wanted behavior towards the goal</p>
-<p class="filtered"><strong>Safety filter</strong> &middot; refines it into a feasible command before actuation</p>
+<p><strong>Aggregate program</strong> &middot; computes the wanted behavior</p>
+<p class="filtered"><strong>Safety filter</strong> &middot; refines it into a feasible command</p>
 </div>
 
 <div class="filter-layout">
@@ -261,8 +261,6 @@ program runs decentralized on every device, which repeatedly:
 ---
 
 {{< slide class="open-slide" transition="fade" >}}
-
-<p class="eyebrow">The two rows still open</p>
 
 # Open challenges
 
@@ -294,8 +292,6 @@ program runs decentralized on every device, which repeatedly:
 ---
 
 {{< slide class="closing-slide" transition="fade" >}}
-
-<p class="eyebrow">Wrap-up</p>
 
 # Future work
 
