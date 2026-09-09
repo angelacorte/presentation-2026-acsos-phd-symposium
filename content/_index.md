@@ -236,7 +236,7 @@ program runs decentralized on every device, which repeatedly:
 
 {{< slide class="filter-slide" transition="fade" >}}
 
-# A safety filter between collective strategy and actuation [6]
+# A safety filter between collective strategy and actuation
 
 <div class="layer-explainer">
 <p><strong>Aggregate program</strong> &middot; computes the wanted behavior</p>
@@ -300,17 +300,22 @@ program runs decentralized on every device, which repeatedly:
 
 <div class="wrap-col next-col">
 <ul class="closing-list">
-<li>Combine spatial organization and safety: <strong>complex shapes that grow and move</strong> without unsafe transients;</li>
+<li class="tied">Combine spatial organization and safety: <strong>complex shapes that grow and move</strong> without unsafe transients;</li>
 <li>Add the two missing building blocks: <strong>preemption and lifecycle</strong>, and <strong>permissions</strong> over collective behavior;</li>
 <li>Integrate the mechanisms into a <strong>CROS prototype</strong> in Collektive.</li>
 </ul>
 </div>
 
 </div>
-<div class="closing-mark">
-<img src="images/qr.png" alt="QR code linking to my personal portfolio">
-<p>Personal portfolio</p>
-</div>
+<figure class="next-figure">
+<img src="images/star-fieldvmc.png" alt="A star-shaped structure grown by FieldVMC in the Alchemist simulator">
+<figcaption><strong>Shapes already grow</strong><span>next: moving them safely</span></figcaption>
+</figure>
 </div>
 
 <p class="final-line">Make the swarm programmable as one system, while keeping its adaptation explicit and safe.</p>
+
+<div class="closing-mark footer">
+<img src="images/qr.png" alt="QR code linking to my personal portfolio">
+<p>Personal portfolio</p>
+</div>

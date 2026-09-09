@@ -459,12 +459,12 @@ $heading4Size: 0.76em;
 
 // Closing slide.
 .reveal .closing-layout {
-	align-items: center;
+	align-items: start;
 	display: grid;
-	gap: 60px;
-	grid-template-columns: 1fr 270px;
-	margin: 18px auto 0;
-	max-width: 1620px;
+	gap: 64px;
+	grid-template-columns: minmax(0, 1fr) 340px;
+	margin: 18px 0 0;
+	max-width: none;
 }
 
 .reveal .wrap-up {
@@ -845,4 +845,51 @@ $heading4Size: 0.76em;
 // Filter slide: tighter title so the two scenarios can run large.
 .reveal .filter-slide h1 {
 	margin-bottom: 30px;
+}
+
+// Closing slide: the FieldVMC shape, tied to the first future-work item.
+.reveal .next-figure img {
+	border: 2px solid var(--line);
+	display: block;
+	width: 100%;
+}
+
+.reveal .next-figure figcaption {
+	border-top: 5px solid var(--orange);
+	padding: 14px 2px 0;
+}
+
+.reveal .next-figure figcaption strong {
+	color: var(--orange);
+	font-size: 0.6em;
+}
+
+.reveal .next-figure figcaption span {
+	color: var(--muted);
+	font-size: 0.52em;
+	line-height: 1.25;
+	margin-top: 8px;
+}
+
+// The QR closes the slide, centred under everything else.
+.reveal .closing-mark.footer {
+	margin: 28px 0 0;
+	text-align: center;
+}
+
+.reveal .closing-mark.footer img {
+	margin: 0 auto;
+	padding: 10px;
+	width: 168px;
+}
+
+.reveal .closing-mark.footer p {
+	font-size: 0.5em;
+	margin: 8px 0 0;
+}
+
+// Orange marker pairs the first future-work item with the figure beside it.
+.reveal .closing-list li.tied::marker {
+	color: var(--orange);
+	font-size: 1.3em;
 }
