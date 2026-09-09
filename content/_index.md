@@ -236,7 +236,7 @@ program runs decentralized on every device, which repeatedly:
 
 {{< slide class="filter-slide" transition="fade" >}}
 
-# A safety filter between collective strategy and actuation
+# A safety filter between collective strategy and actuation [6]
 
 <div class="layer-explainer">
 <p><strong>Aggregate program</strong> &middot; computes the wanted behavior</p>
